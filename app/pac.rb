@@ -20,7 +20,7 @@ class Pac
   end
 
   def move_right
-    @posi_x += 1 if @posi_x != 11
+    @posi_x += 1 if @posi_x != 10
   end
 
   def move_left

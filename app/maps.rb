@@ -11,9 +11,9 @@ class Maps
     @height = height
     @mapa = create_maps
     ubicate_pacman
-    create_walls
-    print_maps
-    start_game
+    # create_walls
+    # print_maps
+    # start_game
   end
 
   def create_maps
@@ -74,4 +74,4 @@ class Maps
   end
 end
 
-Maps.new(11, 11)
+# Maps.new(11, 11)

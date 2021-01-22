@@ -1,3 +1,5 @@
+![Rubycritic](badges/rubycritic_bagde_score.svg)
+
 ![BrightCoders Logo](img/logo-bc.png)
 
 # PacMan Kata

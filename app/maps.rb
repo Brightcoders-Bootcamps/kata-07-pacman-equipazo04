@@ -11,8 +11,9 @@ class Maps
     @height = height
     @mapa = create_maps
     ubicate_pacman
-    #print_maps
-    #start_game
+    create_walls
+    print_maps
+    start_game
   end
 
   def create_maps
@@ -27,6 +28,14 @@ class Maps
       end
       puts ''
     end
+  end
+
+  def create_walls
+    0.upto(@height * @width / 8) { |_el| print_walls('|') }
+  end
+
+  def print_walls(wall)
+    @mapa[rand(0..@width - 1)][rand(0..@height - 1)] = wall
   end
 
   def move_pacman
@@ -65,4 +74,4 @@ class Maps
   end
 end
 
-#Maps.new(11, 11)
+Maps.new(11, 11)

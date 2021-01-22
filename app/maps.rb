@@ -10,6 +10,8 @@ class Maps
     @width = width
     @height = height
     @mapa = create_maps
+    @pared_horizontal = '|'
+    @pared_vertical = '_'
     wall_generator
     ubicate_pacman
     print_maps
@@ -22,8 +24,8 @@ class Maps
 
   def print_maps
     move_pacman
-    @mapa.each do |y|
-      y.each do |x|
+    @mapa.each do |position_y|
+      position_y.each do |position_x|
         print "#{x} "
       end
       puts ''
@@ -91,48 +93,35 @@ class Maps
   end
 
   def check_wall(option)
-    pared1= '|'
-    pared2= '_'
-    
     case option
-    when 'W'
-      if (@mapa[@pac.posi_y - 1][@pac.posi_x] == pared1) || (@mapa[@pac.posi_y - 1][@pac.posi_x] == pared2)
-        false
-      else true
-      end
+        when 'W'
+        check_wall_position(@pac.posi_y-1,@pac.posi_x)
 
-    when 'S'
-      op = false
-      if @pac.posi_y + 1 < 10
-        op = if (@mapa[@pac.posi_y + 1][@pac.posi_x] == pared1) || (@mapa[@pac.posi_y + 1][@pac.posi_x] == pared12)
-               false
-             else true
-             end
-      end
-      op
+        when 'S'
+        check_wall_position(@pac.posi_y+1,@pac.posi_x)
 
-    when 'D'
-      if (@mapa[@pac.posi_y][@pac.posi_x + 1] == pared1) || (@mapa[@pac.posi_y][@pac.posi_x + 1] == pared2)
-        false
-      else true
-      end
+        when 'D'
+        check_wall_position(@pac.posi_y,@pac.posi_x+1)
 
-    when 'A'
-      if (@mapa[@pac.posi_y][@pac.posi_x - 1] == pared1) || (@mapa[@pac.posi_y][@pac.posi_x - 1] == pared2)
-        false
-      else true
-      end
-
+        when 'A'
+            check_wall_position(@pac.posi_y,@pac.posi_x-1)
     end
   end
 
   # DONE
   def wall_generator
-    n = 1
-    while n < 20
+    inicializador_wall_generator = 1
+    while inicializador_wall_generator < 20
       @mapa[rand(0..@width - 1)][rand(0..@height - 1)] = ['|', '_'].sample
-      n += 1
+      inicializador_wall_generator += 1
     end
+  end
+
+  def check_wall_position(position_y,position_x)
+        if (@mapa[position_y][position_x] == @pared_horizontal) || (@mapa[position_y][position_x] == @pared_vertical)
+            false
+        else true
+        end
   end
 end
 
